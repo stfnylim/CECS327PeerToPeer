@@ -5,7 +5,7 @@ import socket
 import threading
 import sys
 import time
-import fileIO
+import fileio
 
 class main:
     # we also include ourselves as a default peer to the network
@@ -13,7 +13,6 @@ class main:
 
 def main():
     # if the server ever breaks, we will make the client a new server
-
     msg = fileIO.convert_to_bytes()
 
     while True:
@@ -29,6 +28,7 @@ def main():
                     # The client will be made to connect to the network
                     # its responsibility will be to upload the file to the machine
                     client = client(peer)
+                    print('Have made a client with HOST: '+ peer + '\n')
                 except KeyboardInterrupt:
                     sys.exit(0)
                 except:
@@ -39,6 +39,7 @@ def main():
                     # The server will be made to connect to the network
                     # its responsibility will be to upload files to the other peers
                     server = server(msg)
+                    print('Have made a server with HOST: ' + peer + '\n')
                 except KeyboardInterrupt:
                     sys.exit()
                 except:
