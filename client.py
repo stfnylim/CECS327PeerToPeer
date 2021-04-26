@@ -11,7 +11,7 @@ import fileIO
 
 # constants
 PORT = 12345
-BYTE_SIZE =1024
+BYTE_SIZE = 1024
 
 class Client:
     def __init(self,addr):
@@ -65,5 +65,5 @@ class Client:
     def update_peers(self, peers):
         # The actual format of the list would be 12.0.0.1, 13.0.0.1
         # -1 is necessary to remove the null value
-        main.peers = str(pee)
+        p2p.peers = str(pee)
 

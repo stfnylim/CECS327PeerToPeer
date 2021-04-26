@@ -5,11 +5,12 @@ import socket
 import threading
 import sys
 import time
-import fileio
+import fileIO
+from random import randint
 
-class main:
+class p2p:
     # we also include ourselves as a default peer to the network
-    peers = ['192.168.0.7', '192.168.0.15','192.168.0.12']
+    peers = ['192.168.0.20','192.168.0.12']
 
 def main():
     # if the server ever breaks, we will make the client a new server
@@ -22,12 +23,12 @@ def main():
             # sleeping any time between 1 to 5 secs
             time.sleep(randint(1,2))
             # for all the peers in the peers list
-            for peer in main.peers:
+            for peer in p2p.peers:
                 # Try to instantiate a client to set up a connection
                 try:
                     # The client will be made to connect to the network
                     # its responsibility will be to upload the file to the machine
-                    client = client(peer)
+                    client = Client(peer)
                     print('Have made a client with HOST: '+ peer + '\n')
                 except KeyboardInterrupt:
                     sys.exit(0)
@@ -38,7 +39,7 @@ def main():
                 try:
                     # The server will be made to connect to the network
                     # its responsibility will be to upload files to the other peers
-                    server = server(msg)
+                    server = Server(msg)
                     print('Have made a server with HOST: ' + peer + '\n')
                 except KeyboardInterrupt:
                     sys.exit()

@@ -11,7 +11,7 @@ import sys
 import time
 
 # constants
-HOST = '192.168.0.15'
+HOST = '192.168.0.20'
 PORT = 12345
 BYTE_SIZE = 1024
 PEER_BYTE_DIFFERENTIATOR = b'\x11'
