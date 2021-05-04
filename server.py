@@ -49,29 +49,6 @@ class Server:
                         print("message ", self.msg)
                         data = pickle.dumps(self.msg)
                         connection.send(data)
-                        #cwd = os.getcwd()
-                        #filename = "./data_laptop_1.txt"
-
-                        # if the connection is still active we send it back the data
-                        # this part deals with uploading of the file
-                        '''
-                        connection.send(self.msg)
-                        fileIO.create_file(data)
-                        '''
-                        #send file to client??
-                        #convert_to_music(self.msg)
-                        '''
-                        connection.send(f"{filename}{SEPARATOR}{filesize}".encode())
-                        progress = tqdm.tqdm(range(filesize), f"Sending {filename}", unit="B", unit_scale=True, unit_divisor=1024)
-                        with open(filename, "rb") as f:
-                            while True:
-                                bytes_read = f.read(1024)
-                                if not bytes_read:
-                                    break
-                                connection.sendall(bytes_read)
-                                progress.update(len(bytes_read))
-                        '''
-
         except Exception as e:
             print(e)
             sys.exit()
