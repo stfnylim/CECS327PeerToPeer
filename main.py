@@ -15,7 +15,7 @@ filelistdir = os.path.join(uploadedfilesdir,'.filelist')
 
 class p2p:
     #list of local ip addresses of laptops on our network
-    peers = [HOST, '192.168.1.203']
+    peers = [HOST, '192.168.0.21']
     #peers = ['192.168.1.203', '192.168.1.68']
 
 
