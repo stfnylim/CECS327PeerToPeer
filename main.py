@@ -10,7 +10,6 @@ HOST = socket.gethostbyname(HOSTNAME)
 
 cwd = os.getcwd()
 uploadedfilesdir = os.path.join(cwd,'Folder_to_send')
-#filelistdir = os.path.join(uploadedfilesdir,'.filelist')
 
 class p2p:
     # list of local ip addresses of devices on our network
@@ -21,7 +20,6 @@ path_to_file = './default_file'
 
 
 def read_folder(folder_path):
-
     files = os.listdir(folder_path)
     files = [folder_path + file for file in files]
     all_read_data = []
@@ -29,9 +27,7 @@ def read_folder(folder_path):
         with open(file, 'r') as f:
             read_data = f.read()
             all_read_data.append(read_data.encode('utf-8'))
-
     return all_read_data
-
 
 def main():
     folder_path = './Folder_to_send/'
@@ -40,7 +36,6 @@ def main():
     create_folder()
     hashlist = update_uploaded_files(folder_path)
 
-    #print(len(message[0]))
     
     while True:
         try:
