@@ -4,12 +4,12 @@ This file takes part of the server side of the peer to peer network
 import os
 import socket 
 import threading 
-import tqdm
 import sys
 import pickle
 
-HOST = '192.168.1.203'
-PORT = 1234
+HOSTNAME = socket.gethostname()
+HOST = socket.gethostbyname(HOSTNAME)
+PORT = 12345
 
 class Server: 
     def __init__(self, msg):
@@ -52,9 +52,6 @@ class Server:
         except Exception as e:
             print(e)
             sys.exit()
-
-
-
 
     """
     Run the server

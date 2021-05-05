@@ -6,13 +6,14 @@ import socket
 import threading 
 import sys
 import pickle
+import hashlib
 
-
-HOST = '192.168.1.203'
-PORT = 1234
+HOSTNAME = socket.gethostname()
+HOST = socket.gethostbyname(HOSTNAME)
+PORT = 12345
 
 class Client: 
-    def __init__(self, addr):
+    def __init__(self, addr,hashlist):
        print("Setting up client")
        # set up socket
        self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -25,6 +26,9 @@ class Client:
        i_thread = threading.Thread(target=self.send_message)
        i_thread.daemon = True
        i_thread.start()
+
+        # this the list of hashes that the current peer has
+       self.hashlist = hashlist
 
        while True:
            r_thread = threading.Thread(target=self.recieve_message)
@@ -55,12 +59,25 @@ class Client:
                 break
             received = pickle.loads(message)
             num_files = len(received)
-            received_folder = './Folder_received/'
+            received_folder = './Folder_to_send/'
+            upload = False
             for i in range(num_files):
-                with open(received_folder + 'file_' + str(i), 'w') as f:
-                    f.write(received[i].decode('utf-8'))
+                if self.hash_text(received[i]) not in self.hashlist:
+                    with open(received_folder + 'file_' + str(i), 'w') as f:
+                        f.write(received[i].decode('utf-8'))
+                        print('writing', received[i].decode('utf-8'))
+                        print("because not in this list:")
+                        print(self.hashlist)
+                        upload = True
             return received
+        
 
+    def hash_text(self, text):
+        m = hashlib.sha256()
+        m.update(text)
+        hash = m.hexdigest()
+        #print(hash)
+        return hash
 
     
 
