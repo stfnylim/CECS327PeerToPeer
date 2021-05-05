@@ -10,7 +10,7 @@ import hashlib
 
 HOSTNAME = socket.gethostname()
 HOST = socket.gethostbyname(HOSTNAME)
-PORT = 1234
+PORT = 12345
 
 class Client: 
     def __init__(self, addr,hashlist):
@@ -59,7 +59,7 @@ class Client:
                 break
             received = pickle.loads(message)
             num_files = len(received)
-            received_folder = './Folder_to_receive/'
+            received_folder = './Folder_to_send/'
             upload = False
             for i in range(num_files):
                 if self.hash_text(received[i]) not in self.hashlist:
@@ -69,12 +69,8 @@ class Client:
                         print("because not in this list:")
                         print(self.hashlist)
                         upload = True
-            
-        if upload:
-            print("The files within the folder is now updated with new files")
-        else:
-            print("The files were the same, so no files were updated")
             return received
+        
 
     def hash_text(self, text):
         m = hashlib.sha256()
