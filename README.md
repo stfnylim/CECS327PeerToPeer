@@ -13,6 +13,6 @@ The goal of your program should be the unification of all sets of files, F, so t
 , Ci ∪ {Fj} on each
 client.
 
-We applied knowledge about socket connections from https://github.com/Ezi0aaudit0re/P2P-music-sharing
+We applied knowledge about socket connections from https://medium.com/@amannagpal4/how-to-create-your-own-decentralized-file-sharing-service-using-python-2e00005bdc4a
 
 
