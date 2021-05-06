@@ -38,10 +38,8 @@ class Client:
                #the server has failed
                print("--------------Server failed-------------")
                break
-
            elif data[0:1] == b'\x10':
                print("Got peers")
-               # first byte is the byte '\x11 we added to make sure that we have peers
                self.update_peers(data[1:])
 
 
