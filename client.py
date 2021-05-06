@@ -1,6 +1,3 @@
-"""
-This file takes care of the client side of the peer to peer network
-"""
 import os
 import socket 
 import threading 
