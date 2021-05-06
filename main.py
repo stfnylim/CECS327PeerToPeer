@@ -29,38 +29,6 @@ def read_folder(folder_path):
             all_read_data.append(read_data.encode('utf-8'))
     return all_read_data
 
-def main():
-    folder_path = './Folder_to_send/'
-    message = read_folder(folder_path)
-    print(HOST)
-    create_folder()
-    hashlist = update_uploaded_files(folder_path)
-
-    
-    while True:
-        try:
-            print("---------------Connecting----------------")
-            for peer in p2p.peers:
-                try:
-                    client = Client(peer,hashlist)
-                except KeyboardInterrupt:
-                    sys.exit(0)
-                
-                except:
-                    pass
-
-                # become the server
-                try:
-                    server = Server(message)
-                except KeyboardInterrupt:
-                    sys.exit()
-                except:
-                    pass
-        except KeyboardInterrupt as e:
-            print(e)
-            sys.exit(0)
-        
-    
 def create_folder():
 
     if (os.path.isdir(uploadedfilesdir)):
@@ -93,6 +61,40 @@ def hash_text(text):
         hash = m.hexdigest()
         print(hash)
         return hash
+
+
+def main():
+    folder_path = './Folder_to_send/'
+    message = read_folder(folder_path)
+    print(HOST)
+    create_folder()
+    hashlist = update_uploaded_files(folder_path)
+
+    
+    while True:
+        try:
+            print("---------------Connecting----------------")
+            for peer in p2p.peers:
+                try:
+                    client = Client(peer,hashlist)
+                except KeyboardInterrupt:
+                    sys.exit(0)
+                
+                except:
+                    pass
+
+         
+                try:
+                    server = Server(message)
+                except KeyboardInterrupt:
+                    sys.exit()
+                except:
+                    pass
+        except KeyboardInterrupt as e:
+            print(e)
+            sys.exit(0)
+        
+    
 
 if __name__ == "__main__":
     main()
