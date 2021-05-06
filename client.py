@@ -23,17 +23,17 @@ class Client:
     
        #create to work on a different thread
        #this thread is used to send message to the server
-       i_thread = threading.Thread(target=self.send_message)
-       i_thread.daemon = True
-       i_thread.start()
+       send_thread = threading.Thread(target=self.send_message)
+       send_thread.daemon = True
+       send_thread.start()
 
         # this the list of hashes that the current peer has
        self.hashlist = hashlist
 
        while True:
-           r_thread = threading.Thread(target=self.recieve_message)
-           r_thread.start()
-           r_thread.join()
+           receive_thread = threading.Thread(target=self.recieve_message)
+           receive_thread.start()
+           receive_thread.join()
             #receive message from the server
            data = self.recieve_message()
 
