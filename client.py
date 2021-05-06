@@ -80,8 +80,6 @@ class Client:
     This method updates the list of peers
     """
     def update_peers(self, peers):
-        # our peers list would lool like 127.0.0.1, 192.168.1.1, 
-        # we do -1 to remove the last value which would be None
         p2p.peers = str(peers, "utf-8").split(',')[:-1]
     
 
