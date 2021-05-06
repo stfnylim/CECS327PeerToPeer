@@ -1,6 +1,4 @@
-"""
-This file takes part of the server side of the peer to peer network
-"""
+
 import os
 import socket 
 import threading 
